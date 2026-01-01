@@ -109,6 +109,8 @@ router.patch('/:id', async (req, res) => {
       return res.status(404).json({ message: 'product not found' });
     }
 
+
+    // / keep old slug or generate new one if name changes
     let slug = productCheck.rows[0].slug;
     if (name && name !== productCheck.rows[0].name) {
       slug = await generateUniqueSlug(name);
